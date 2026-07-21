@@ -1,0 +1,139 @@
+{
+  "version": "2.0",
+  "durationSeconds": 104,
+  "sequences": {
+    "idle": [
+      "assets/sprites/idle/00.png",
+      "assets/sprites/idle/01.png",
+      "assets/sprites/idle/02.png",
+      "assets/sprites/idle/03.png"
+    ],
+    "walk": [
+      "assets/sprites/walk/00.png",
+      "assets/sprites/walk/01.png",
+      "assets/sprites/walk/02.png",
+      "assets/sprites/walk/03.png",
+      "assets/sprites/walk/04.png",
+      "assets/sprites/walk/05.png",
+      "assets/sprites/walk/06.png",
+      "assets/sprites/walk/07.png"
+    ],
+    "run": [
+      "assets/sprites/run/00.png",
+      "assets/sprites/run/01.png",
+      "assets/sprites/run/02.png",
+      "assets/sprites/run/03.png",
+      "assets/sprites/run/04.png",
+      "assets/sprites/run/05.png",
+      "assets/sprites/run/06.png"
+    ],
+    "attack": [
+      "assets/sprites/attack/00.png",
+      "assets/sprites/attack/01.png",
+      "assets/sprites/attack/02.png",
+      "assets/sprites/attack/03.png",
+      "assets/sprites/attack/04.png",
+      "assets/sprites/attack/05.png"
+    ],
+    "power": [
+      "assets/sprites/power/00.png",
+      "assets/sprites/power/01.png",
+      "assets/sprites/power/02.png",
+      "assets/sprites/power/03.png",
+      "assets/sprites/power/04.png"
+    ],
+    "invocation": [
+      "assets/sprites/invocation/00.png",
+      "assets/sprites/invocation/01.png",
+      "assets/sprites/invocation/02.png",
+      "assets/sprites/invocation/03.png",
+      "assets/sprites/invocation/04.png"
+    ],
+    "kneel": [
+      "assets/sprites/kneel/00.png",
+      "assets/sprites/kneel/01.png",
+      "assets/sprites/kneel/02.png",
+      "assets/sprites/kneel/03.png",
+      "assets/sprites/kneel/04.png"
+    ],
+    "return": [
+      "assets/sprites/return/00.png",
+      "assets/sprites/return/01.png",
+      "assets/sprites/return/02.png",
+      "assets/sprites/return/03.png",
+      "assets/sprites/return/04.png",
+      "assets/sprites/return/05.png"
+    ]
+  },
+  "portraits": {
+    "calm": "assets/portraits/calm.png",
+    "talk": "assets/portraits/talk.png",
+    "sadness": "assets/portraits/sadness.png",
+    "aggression": "assets/portraits/aggression.png",
+    "special": "assets/portraits/special.png",
+    "smile": "assets/portraits/smile.png"
+  },
+  "locations": [
+    {
+      "id": "sanctuary",
+      "name": "Sanctuary",
+      "image": "assets/backgrounds/sanctuary.webp"
+    },
+    {
+      "id": "grand-hall",
+      "name": "Grand Hall",
+      "image": "assets/backgrounds/grand-hall.webp"
+    },
+    {
+      "id": "courtyard",
+      "name": "Courtyard",
+      "image": "assets/backgrounds/courtyard.webp"
+    },
+    {
+      "id": "rooftop",
+      "name": "Rooftop",
+      "image": "assets/backgrounds/rooftop.webp"
+    }
+  ],
+  "enemySequences": {
+    "idle": [
+      "assets/sprites/enemy/idle/00.png",
+      "assets/sprites/enemy/idle/01.png",
+      "assets/sprites/enemy/idle/02.png",
+      "assets/sprites/enemy/idle/03.png"
+    ],
+    "walk": [
+      "assets/sprites/enemy/walk/00.png",
+      "assets/sprites/enemy/walk/01.png",
+      "assets/sprites/enemy/walk/02.png",
+      "assets/sprites/enemy/walk/03.png",
+      "assets/sprites/enemy/walk/04.png",
+      "assets/sprites/enemy/walk/05.png",
+      "assets/sprites/enemy/walk/06.png",
+      "assets/sprites/enemy/walk/07.png"
+    ],
+    "run": [
+      "assets/sprites/enemy/run/00.png",
+      "assets/sprites/enemy/run/01.png",
+      "assets/sprites/enemy/run/02.png",
+      "assets/sprites/enemy/run/03.png",
+      "assets/sprites/enemy/run/04.png",
+      "assets/sprites/enemy/run/05.png",
+      "assets/sprites/enemy/run/06.png"
+    ],
+    "attack": [
+      "assets/sprites/enemy/attack/00.png",
+      "assets/sprites/enemy/attack/01.png",
+      "assets/sprites/enemy/attack/02.png",
+      "assets/sprites/enemy/attack/03.png",
+      "assets/sprites/enemy/attack/04.png",
+      "assets/sprites/enemy/attack/05.png"
+    ]
+  },
+  "combat": {
+    "enemy": "Red Knight",
+    "guardian": "Blue Knight",
+    "enemyRole": "Hostile invader",
+    "outcome": "Guardian victory"
+  }
+}
