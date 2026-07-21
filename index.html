@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Project Guardian | ACFA</title>
+<style>
+:root{--gold:#d6aa45;--gold2:#ffe39a;--ink:#070706;--panel:rgba(10,9,7,.88)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#050505;color:#f5ead0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;overflow-x:hidden}
+body{
+ background:
+ radial-gradient(circle at 50% 10%,rgba(215,166,55,.19),transparent 36%),
+ linear-gradient(rgba(2,2,2,.63),rgba(2,2,2,.88)),
+ repeating-linear-gradient(135deg,#090806 0 2px,#050505 2px 7px);
+}
+.shell{min-height:100vh;padding:18px}
+.hero{max-width:1080px;margin:auto;border:1px solid rgba(214,170,69,.45);border-radius:20px;background:var(--panel);box-shadow:0 25px 80px #000;overflow:hidden}
+.top{padding:28px 24px 18px;text-align:center;border-bottom:1px solid rgba(214,170,69,.25)}
+.eyebrow{letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:800;font-size:.76rem}
+h1{font-family:Georgia,serif;font-size:clamp(2rem,6vw,4.5rem);margin:.25rem 0;color:var(--gold2);text-shadow:0 0 28px rgba(214,170,69,.28)}
+.subtitle{margin:auto;max-width:730px;line-height:1.55;color:#d5cab5}
+.arena{position:relative;height:min(68vh,690px);min-height:470px;overflow:hidden;cursor:crosshair;isolation:isolate}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(214,170,69,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(214,170,69,.055) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent)}
+.eclipse{position:absolute;left:50%;top:13%;width:110px;height:110px;transform:translateX(-50%);border-radius:50%;background:#050505;box-shadow:0 0 22px 8px #d99f2c,0 0 70px 25px rgba(217,159,44,.22)}
+.status{position:absolute;top:18px;left:18px;z-index:6;padding:9px 13px;border:1px solid rgba(214,170,69,.4);border-radius:999px;background:rgba(0,0,0,.7);font-size:.82rem}
+.status b{color:var(--gold2)}
+.guardian{position:fixed;z-index:9999;width:120px;height:120px;left:26px;top:calc(100vh - 150px);image-rendering:pixelated;pointer-events:none;filter:drop-shadow(0 8px 12px #000) drop-shadow(0 0 8px rgba(214,170,69,.5));transform-origin:center bottom}
+.guardian.flip{transform:scaleX(-1)}
+.spark{position:fixed;z-index:9998;width:9px;height:9px;border-radius:50%;background:var(--gold2);pointer-events:none;box-shadow:0 0 14px 4px var(--gold);animation:spark .45s ease-out forwards}
+@keyframes spark{to{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
+.controls{position:absolute;z-index:8;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:min(92%,700px)}
+button{border:1px solid rgba(214,170,69,.55);background:linear-gradient(#6e4d16,#2b1b07);color:#fff3ce;padding:12px 18px;border-radius:12px;font-weight:800;cursor:pointer;box-shadow:0 7px 20px #000}
+button:hover{filter:brightness(1.15)}
+button.secondary{background:rgba(0,0,0,.72)}
+.instructions{max-width:1080px;margin:14px auto 0;padding:16px 20px;border:1px solid rgba(214,170,69,.22);border-radius:14px;background:rgba(0,0,0,.62);line-height:1.5;color:#cfc3ad}
+.toast{position:fixed;z-index:10000;left:50%;top:18px;transform:translateX(-50%) translateY(-30px);opacity:0;padding:10px 16px;background:#090806;border:1px solid var(--gold);border-radius:12px;color:var(--gold2);transition:.25s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:650px){
+ .shell{padding:0}.hero{border-radius:0;border-left:0;border-right:0}.top{padding:22px 16px 14px}
+ .arena{height:70vh;min-height:520px}.guardian{width:96px;height:96px}
+ .instructions{margin:10px;border-radius:12px}.controls{bottom:18px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+ <main class="hero">
+  <header class="top">
+   <div class="eyebrow">And Chess For All presents</div>
+   <h1>Project Guardian</h1>
+   <p class="subtitle">Awaken the Guardian, move your cursor, and survive the pursuit. On mobile, tap anywhere in the arena to redirect her attack.</p>
+  </header>
+  <section class="arena" id="arena">
+   <div class="grid"></div><div class="eclipse"></div>
+   <div class="status">Status: <b id="statusText">Dormant</b></div>
+   <div class="controls">
+    <button id="startBtn">⚔️ Awaken Guardian</button>
+    <button id="cancelBtn" class="secondary">End Hunt</button>
+    <button id="hitBtn" class="secondary">Test Hurt</button>
+   </div>
+  </section>
+ </main>
+ <div class="instructions"><b>How it works:</b> Activate the Guardian, then move your mouse around the forum experience. She will run toward it and launch a random attack when close. The hunt ends automatically after 15 seconds and never blocks buttons or links.</div>
+</div>
+<img id="guardian" class="guardian" alt="Project Guardian character">
+<div id="toast" class="toast">Target acquired.</div>
+<script>
+const frames = {
+ idle:["assets/frames/idle_0.png","assets/frames/idle_1.png","assets/frames/idle_2.png","assets/frames/idle_3.png"],
+ run:["assets/frames/run_0.png","assets/frames/run_1.png","assets/frames/run_2.png","assets/frames/run_3.png","assets/frames/run_4.png","assets/frames/run_5.png"],
+ attack1:["assets/frames/attack1_0.png","assets/frames/attack1_1.png","assets/frames/attack1_2.png","assets/frames/attack1_3.png","assets/frames/attack1_4.png","assets/frames/attack1_5.png"],
+ attack2:["assets/frames/attack2_0.png","assets/frames/attack2_1.png","assets/frames/attack2_2.png","assets/frames/attack2_3.png","assets/frames/attack2_4.png","assets/frames/attack2_5.png"],
+ attack3:["assets/frames/attack3_0.png","assets/frames/attack3_1.png","assets/frames/attack3_2.png","assets/frames/attack3_3.png","assets/frames/attack3_4.png","assets/frames/attack3_5.png"],
+ hurt:["assets/frames/hurt_0.png","assets/frames/hurt_1.png","assets/frames/hurt_2.png"]
+};
+Object.values(frames).flat().forEach(src=>{const i=new Image();i.src=src});
+const g=document.getElementById("guardian"), statusText=document.getElementById("statusText"), toast=document.getElementById("toast");
+let x=28,y=innerHeight-150,targetX=innerWidth/2,targetY=innerHeight/2,hunting=false,attacking=false,frame=0,lastFrame=0,state="idle",huntTimer=null,lastAttack=0;
+function showToast(text){toast.textContent=text;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),1200)}
+function setState(next){if(state!==next){state=next;frame=0}}
+function animateSprite(t){
+ const speed=state==="run"?90:state.startsWith("attack")?85:190;
+ if(t-lastFrame>speed){const list=frames[state]||frames.idle;g.src=list[frame%list.length];frame++;lastFrame=t}
+ requestAnimationFrame(animateSprite)
+}
+function particles(cx,cy){
+ for(let i=0;i<12;i++){const s=document.createElement("i");s.className="spark";s.style.left=cx+"px";s.style.top=cy+"px";s.style.setProperty("--dx",(Math.random()*110-55)+"px");s.style.setProperty("--dy",(Math.random()*110-55)+"px");document.body.appendChild(s);setTimeout(()=>s.remove(),500)}
+}
+function attack(){
+ if(attacking)return;attacking=true;const choices=["attack1","attack2","attack3"];setState(choices[Math.floor(Math.random()*choices.length)]);particles(targetX,targetY);showToast(["Judgment delivered.","Stay sharp.","Justice never rests."][Math.floor(Math.random()*3)]);
+ setTimeout(()=>{attacking=false;if(hunting)setState("run");else setState("idle")},620)
+}
+function motion(){
+ if(hunting&&!attacking){
+  const dx=targetX-(x+60),dy=targetY-(y+60),dist=Math.hypot(dx,dy);
+  if(dist>50){const step=Math.min(8,dist*.08);x+=dx/dist*step;y+=dy/dist*step;setState("run")}
+  else if(Date.now()-lastAttack>850){lastAttack=Date.now();attack()}
+  g.classList.toggle("flip",dx<0)
+ }
+ x=Math.max(-15,Math.min(innerWidth-105,x));y=Math.max(0,Math.min(innerHeight-115,y));
+ g.style.left=x+"px";g.style.top=y+"px";requestAnimationFrame(motion)
+}
+function startHunt(){
+ clearTimeout(huntTimer);hunting=true;attacking=false;statusText.textContent="Hunting";showToast("Target acquired.");setState("run");
+ huntTimer=setTimeout(stopHunt,15000)
+}
+function stopHunt(){
+ clearTimeout(huntTimer);hunting=false;attacking=false;statusText.textContent="Dormant";setState("idle");showToast("Training complete.")
+}
+addEventListener("pointermove",e=>{targetX=e.clientX;targetY=e.clientY});
+document.getElementById("arena").addEventListener("pointerdown",e=>{targetX=e.clientX;targetY=e.clientY});
+document.getElementById("startBtn").onclick=startHunt;
+document.getElementById("cancelBtn").onclick=stopHunt;
+document.getElementById("hitBtn").onclick=()=>{setState("hurt");showToast("Guardian staggered.");setTimeout(()=>setState(hunting?"run":"idle"),650)};
+addEventListener("resize",()=>{x=Math.min(x,innerWidth-105);y=Math.min(y,innerHeight-115)});
+g.src=frames.idle[0];requestAnimationFrame(animateSprite);requestAnimationFrame(motion);
+</script>
+</body>
+</html>
