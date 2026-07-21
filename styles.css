@@ -15,7 +15,7 @@ h1{margin:.35rem 0 0;font-size:clamp(23px,4vw,54px);letter-spacing:.08em}
 #statusDot{width:9px;height:9px;border-radius:50%;background:#555;box-shadow:0 0 10px currentColor}
 #guardianLayer{position:absolute;z-index:3;left:0;right:0;bottom:14%;height:190px;pointer-events:none}
 #guardian{position:absolute;width:clamp(105px,13vw,190px);height:auto;bottom:0;left:-190px;image-rendering:pixelated;filter:drop-shadow(0 12px 8px rgba(0,0,0,.55));opacity:0}
-.dialogue{position:absolute;z-index:5;left:50%;transform:translateX(-50%);bottom:95px;width:min(720px,calc(100% - 28px));display:grid;grid-template-columns:108px 1fr;background:rgba(7,9,14,.94);border:2px solid #b9933f;box-shadow:0 0 0 3px #17130c,0 12px 40px #000;padding:10px;transition:.25s}
+.dialogue{position:absolute;z-index:5;left:50%;transform:translateX(-50%);bottom:120px;width:min(720px,calc(100% - 28px));display:grid;grid-template-columns:108px 1fr;background:rgba(7,9,14,.94);border:2px solid #b9933f;box-shadow:0 0 0 3px #17130c,0 12px 40px #000;padding:10px;transition:.25s}
 .dialogue.hidden{opacity:0;transform:translate(-50%,20px);pointer-events:none}
 .dialogue img{width:96px;height:80px;object-fit:cover;object-position:center 22%;image-rendering:pixelated;border:1px solid rgba(215,180,90,.45)}
 .dialogue span{font:700 11px system-ui;letter-spacing:.18em;color:var(--gold)}.dialogue p{margin:8px 0 0;font-size:clamp(15px,2.2vw,20px);line-height:1.35}
