@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Project Guardian — Pixel Castle</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main id="world" class="dormant" aria-label="Project Guardian interactive pixel castle">
+  <div id="scene" aria-hidden="true"></div>
+  <div class="vignette"></div>
+  <div class="scanlines"></div>
+  <div id="particles"></div>
+
+  <header class="hud">
+    <div>
+      <span class="eyebrow">ACFA SENTINEL SYSTEM</span>
+      <h1>PROJECT GUARDIAN</h1>
+    </div>
+    <div class="status-panel">
+      <span id="statusDot"></span>
+      <div><b id="statusText">DORMANT</b><small id="locationText">Sanctuary</small></div>
+    </div>
+  </header>
+
+  <section id="guardianLayer" aria-live="polite">
+    <img id="guardian" alt="Blue Guardian Knight">
+    <img id="enemy" alt="Red Enemy Knight">
+    <div id="impactFlash"></div>
+    <div id="clashSpark"></div>
+    <div id="enemyHealth" class="enemy-health hidden">
+      <span>RED KNIGHT</span>
+      <div class="enemy-health-track"><i id="enemyHealthFill"></i></div>
+    </div>
+  </section>
+
+  <section id="dialogue" class="dialogue hidden" aria-live="polite">
+    <img id="portrait" alt="">
+    <div>
+      <span>GUARDIAN</span>
+      <p id="dialogueText"></p>
+    </div>
+  </section>
+
+  <section class="controls">
+    <button id="awakenBtn" class="primary">AWAKEN GUARDIAN</button>
+    <button id="recallBtn" disabled>RETURN TO POST</button>
+    <button id="soundBtn" aria-pressed="true">AMBIENCE: ON</button>
+    <span id="musicStatus" class="music-status">SEARCHING FOR MP3 FILES…</span>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

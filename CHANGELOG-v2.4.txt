@@ -1,0 +1,11 @@
+Project Guardian v2.4 — Identity & Automatic MP3 Detection
+
+- Rewrote Guardian dialogue to give the project its own dark-fantasy identity.
+- Removed the ACFA slogan and generic dashboard language from character dialogue.
+- Added separate awakening, patrol, alert, duel, victory, and return dialogue pools.
+- Added automatic detection of every MP3 stored in the repository's /music folder.
+- GitHub Pages uses the public GitHub Contents API, so filenames do not need to be entered in app.js.
+- Added local fallback detection for track1.mp3 through track30.mp3.
+- Added automatic playlist continuation and looping.
+- Added an on-screen track status label.
+- Retained a richer procedural synth only when no MP3 files are present.

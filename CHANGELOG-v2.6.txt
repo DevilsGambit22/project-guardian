@@ -1,0 +1,8 @@
+Project Guardian v2.6 — Clean Immersive UI
+
+- Removed the visible timer progression bar.
+- Removed the visible countdown text.
+- Kept the 1:44 patrol duration running invisibly in the background.
+- Reduced the Project Guardian title size.
+- Lowered title opacity so the castle and characters remain the visual focus.
+- Repositioned the bottom controls to use the freed space cleanly.
