@@ -1,0 +1,11 @@
+Project Guardian v2.3 — Waypoint Patrol
+
+Changes:
+- Replaced random patrol movement with a deterministic five-point waypoint route.
+- Guardian now walks back and forth through the scene and pauses naturally at each post.
+- Movement is Promise-based and ends only after the CSS left-position transition completes.
+- Guardian automatically switches to idle after reaching each waypoint.
+- Added a movement cancellation token to prevent overlapping patrol, combat, and recall animations.
+- Combat cleanly interrupts the route and resumes it after the Red Knight is defeated.
+- Red Knight encounter is scripted to occur about nine seconds after awakening.
+- Removed random run commands that caused the Guardian to animate in one place.

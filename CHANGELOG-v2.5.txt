@@ -1,0 +1,10 @@
+Project Guardian v2.5 — Sword Clash & Damage
+
+- Rebuilt the Blue vs. Red Knight battle around visible sword clashes.
+- Both knights now attack at the same moment during clash sequences.
+- Added a dedicated clash spark effect at the weapon contact point.
+- Added Red Knight health and staged damage: 25%, 30%, then 45%.
+- Added Red Knight hit flash and knockback reactions after each Blue Knight strike.
+- Blue Knight now wins the blade bind, parries, counters, and lands the finishing power attack.
+- Red Knight is defeated only after health reaches zero.
+- Patrol resumes after the full battle sequence.
